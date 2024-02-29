@@ -11,6 +11,7 @@
 		243F0BF02B90F79D000BF938 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F0BEF2B90F79D000BF938 /* ContentView.swift */; };
 		243F0BF22B90F79E000BF938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 243F0BF12B90F79E000BF938 /* Assets.xcassets */; };
 		243F0BF52B90F79E000BF938 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 243F0BF42B90F79E000BF938 /* Preview Assets.xcassets */; };
+		243F0BFF2B91075C000BF938 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F0BFE2B91075C000BF938 /* Styles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		243F0BF12B90F79E000BF938 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		243F0BF42B90F79E000BF938 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		243F0BF62B90F79E000BF938 /* SchoolTimeCounter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SchoolTimeCounter.entitlements; sourceTree = "<group>"; };
+		243F0BFE2B91075C000BF938 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		243F0BEC2B90F79D000BF938 /* SchoolTimeCounter */ = {
 			isa = PBXGroup;
 			children = (
+				243F0BFE2B91075C000BF938 /* Styles.swift */,
 				243F0BED2B90F79D000BF938 /* SchoolTimeCounterApp.swift */,
 				243F0BEF2B90F79D000BF938 /* ContentView.swift */,
 				243F0BF12B90F79E000BF938 /* Assets.xcassets */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243F0BFF2B91075C000BF938 /* Styles.swift in Sources */,
 				243F0BF02B90F79D000BF938 /* ContentView.swift in Sources */,
 				243F0BEE2B90F79D000BF938 /* SchoolTimeCounterApp.swift in Sources */,
 			);
@@ -279,6 +283,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -306,6 +311,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
