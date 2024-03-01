@@ -23,7 +23,7 @@ struct AppMenu: View {
                 HStack {
                     BoldText("⏳ Next minute")
                     Spacer()
-                    BoldText("\(nextMinuteSecondsLeft) seconds left")
+                    BoldText("\(nextMinuteSecondsLeft) seconds")
                 }
                 VStack {
                     ProgressView(value: calculateProgressForNextMinute())
@@ -34,7 +34,7 @@ struct AppMenu: View {
                 HStack {
                     BoldText("🕑 Next hour")
                     Spacer()
-                    BoldText("\(nextHourMinutesLeft) minutes left")
+                    BoldText("\(nextHourMinutesLeft) minutes")
                 }
                 VStack {
                     ProgressView(value: calculateProgressForNextHour())
@@ -47,12 +47,15 @@ struct AppMenu: View {
                 HStack {
                     BoldText("🏠 Next Friday")
                     Spacer()
-                    BoldText("\(nextFridayDaysLeft) days left")
+                    BoldText("\(nextFridayDaysLeft) days")
                 }
                 VStack {
                     ProgressView(value: calculateProgressForNextFriday())
                 }
             }
+            
+            Divider()
+                .padding(.top)
         }
         .padding()
         .onReceive(timer) { _ in
