@@ -13,7 +13,11 @@ struct SchoolTimeCounterApp: App {
 struct AppMenu: View {
     @State private var nextMinuteSecondsLeft: Int = 0
     @State private var nextHourMinutesLeft: Int = 0
+    
     @State private var nextFridayDaysLeft: Int = 0
+    
+    @State private var lessonEndHoursLeft: Int = 0
+    @State private var lessonEndMinutesLeft: Int = 0
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -54,8 +58,18 @@ struct AppMenu: View {
                 }
             }
             
-            Divider()
-                .padding(.top)
+            PaddingDivider()
+            
+            VStack {
+                HStack {
+                    BoldText("🏫 Lesson End")
+                    Spacer()
+                    BoldText("\(lessonEndHoursLeft)h \(lessonEndMinutesLeft)m")
+                }
+                VStack {
+                    ProgressView(value: calculateProgressForLessonEnd())
+                }
+            }
         }
         .padding()
         .onReceive(timer) { _ in
@@ -64,11 +78,6 @@ struct AppMenu: View {
         .onAppear {
             updateCountdowns()
         }
-        
-        Link("WebUntis", destination: URL(string: "https://mese.webuntis.com/timetable-students-my")!)
-            .foregroundStyle(.gray)
-            .padding(.bottom)
-            .underline()
     }
     
     func updateCountdowns() {
@@ -101,4 +110,43 @@ struct AppMenu: View {
     func calculateProgressForNextFriday() -> Double {
         return Double(5 - nextFridayDaysLeft) / 5.0
     }
+    
+    func calculateProgressForLessonEnd() -> Double {
+        let now = Date()
+        let lessonTimes = [
+            (startHour: 8, startMinute: 0, endHour: 9, endMinute: 30),
+            (startHour: 9, startMinute: 45, endHour: 11, endMinute: 15),
+            (startHour: 11, startMinute: 35, endHour: 13, endMinute: 5),
+            (startHour: 13, startMinute: 30, endHour: 15, endMinute: 0),
+            (startHour: 15, startMinute: 15, endHour: 16, endMinute: 45)
+        ]
+        
+        guard let currentLessonTime = lessonTimes.first(where: { lessonTime in
+            let lessonStartTime = Calendar.current.date(bySettingHour: lessonTime.startHour, minute: lessonTime.startMinute, second: 0, of: now)!
+            let lessonEndTime = Calendar.current.date(bySettingHour: lessonTime.endHour, minute: lessonTime.endMinute, second: 0, of: now)!
+            return now >= lessonStartTime && now < lessonEndTime
+        }) else {
+            return 0.0
+        }
+        
+        let totalLessonTime = (currentLessonTime.endHour - currentLessonTime.startHour) * 60
+        let timeDifference = Calendar.current.dateComponents([.minute], from: now, to: Calendar.current.date(bySettingHour: currentLessonTime.endHour, minute: 0, second: 0, of: now)!)
+        let remainingTime = timeDifference.minute ?? 0
+        
+        return 1.0 - Double(remainingTime) / Double(totalLessonTime)
+    }
 }
+
+/*
+ *
+ * 08:00 - 09:30
+ *
+ * 09:45 - 11:15
+ *
+ * 11:35 - 13:05
+ *
+ * 13:30 - 15:00
+ *
+ * 15:15 - 16:45
+ *
+ */
